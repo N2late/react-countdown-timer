@@ -1,29 +1,48 @@
 import './App.css';
 import date from 'date-and-time';
-import { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import image from './img/1639934844493.jpg';
 
 function App() {
   const [dateNow, setDateNow] = useState(new Date());
   const futureDate = new Date(2022, 8, 28);
-  const daysUntil = date.subtract(futureDate, dateNow).toDays();
-  const hoursUntil = date.subtract(futureDate, dateNow).toHours();
-  const minutesUntil = date.subtract(futureDate, dateNow).toMinutes();
-  const secondsUntil = date.subtract(futureDate, dateNow).toSeconds();
-  console.log(secondsUntil);
-  // useEffect(() => {}, [dateNow]);
+  let nextDay = date.addDays(dateNow, 1);
+  nextDay = date.format(nextDay, 'D');
+  const endOfTheDay = new Date(2022, 8, nextDay, '00', '00', '00');
+
+  const minutes = 59 - date.format(dateNow, 'mm');
+
+  const seconds = 59 - date.format(dateNow, 'ss');
+
+  // input time in days, hours, minutes and seconds
+  const daysUntil = Math.floor(date.subtract(futureDate, dateNow).toDays());
+  const hoursUntilEndOfDay = Math.floor(
+    date.subtract(endOfTheDay, dateNow).toHours(),
+  );
+
+  // the total amount of seconds until the deadline defined
+  const secondsUntil = Math.floor(
+    date.subtract(futureDate, dateNow).toSeconds(),
+  );
   setTimeout(() => setDateNow(new Date()), 1000);
+
   if (secondsUntil >= 0) {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Hi Anja 😊</h2>
+          <img
+            style={{ width: 200, border: '5px solid white' }}
+            src={image}
+            alt="logo"
+          />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            {daysUntil} {daysUntil === '1' ? 'day' : 'days'} |{' '}
+            {hoursUntilEndOfDay} {hoursUntilEndOfDay > 1 ? 'hours' : 'hour'},{' '}
+            {minutes} {minutes > 1 ? 'minutes' : 'minute'} and {seconds}{' '}
+            {seconds > 1 ? 'seconds' : 'second'}
           </p>
-          <p>
-            {daysUntil} - {hoursUntil} : {minutesUntil} : {secondsUntil}
-          </p>
+          <h1>Until your Birthday 🥳</h1>
         </header>
       </div>
     );
