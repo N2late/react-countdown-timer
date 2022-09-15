@@ -1,6 +1,7 @@
 import './App.css';
 import date from 'date-and-time';
 import { useState } from 'react';
+import Wheel from './components/Wheel';
 import image from './img/1639934844493.jpg';
 
 function App() {
@@ -26,29 +27,27 @@ function App() {
   );
   setTimeout(() => setDateNow(new Date()), 1000);
 
-  if (secondsUntil >= 0) {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h2>Hi Anja 😊</h2>
-          <img
-            style={{ width: 200, border: '5px solid white' }}
-            src={image}
-            alt="logo"
-          />
-          <p>
-            {daysUntil} {daysUntil === '1' ? 'day' : 'days'} |{' '}
-            {hoursUntilEndOfDay} {hoursUntilEndOfDay > 1 ? 'hours' : 'hour'},{' '}
-            {minutes} {minutes > 1 ? 'minutes' : 'minute'} and {seconds}{' '}
-            {seconds > 1 ? 'seconds' : 'second'}
-          </p>
-          <h1>Until your Birthday 🥳</h1>
-        </header>
-      </div>
-    );
-  } else {
-    return <p>Awesome</p>;
-  }
+  return secondsUntil <= 0 ? (
+    <div className="App">
+      <header className="App-header">
+        <h2>Hi Anja 😊</h2>
+        <img
+          style={{ width: 200, border: '5px solid white' }}
+          src={image}
+          alt="logo"
+        />
+        <p>
+          {daysUntil} {daysUntil === '1' ? 'day' : 'days'} |{' '}
+          {hoursUntilEndOfDay} {hoursUntilEndOfDay > 1 ? 'hours' : 'hour'},{' '}
+          {minutes} {minutes > 1 ? 'minutes' : 'minute'} and {seconds}{' '}
+          {seconds > 1 ? 'seconds' : 'second'}
+        </p>
+        <h1>Until your Birthday 🥳</h1>
+      </header>
+    </div>
+  ) : (
+    <Wheel />
+  );
 }
 
 export default App;
