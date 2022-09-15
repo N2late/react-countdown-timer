@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 export default function Wheel() {
   const [selectedItem, setSelectedItem] = useState();
   const [prize, setPrize] = useState('');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const places = [
     'A Massage',
     '1 Prater Diversion Ride',

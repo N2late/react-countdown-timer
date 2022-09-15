@@ -27,7 +27,7 @@ function App() {
   );
   setTimeout(() => setDateNow(new Date()), 1000);
 
-  return secondsUntil <= 0 ? (
+  return secondsUntil >= 0 ? (
     <div className="App">
       <header className="App-header">
         <h2>Hi Anja 😊</h2>
