@@ -4,14 +4,20 @@ import { useEffect, useState } from 'react';
 export default function Wheel() {
   const [selectedItem, setSelectedItem] = useState();
   const [prize, setPrize] = useState('');
-  const places = [
-    'A Massage',
-    '1 Prater Diversion Ride',
-    'A toothpaste',
-    '2 Prater Diversions Rides',
-    '3 Prater Diversions Rides',
-    'A Massage and 3 Prater Diversions Rides',
-  ];
+  const [places, setPlaces] = useState([]);
+
+  useEffect(
+    () =>
+      setPlaces([
+        'A Massage',
+        '1 Prater Diversion Ride',
+        'A toothpaste',
+        '2 Prater Diversions Rides',
+        '3 Prater Diversions Rides',
+        'A Massage and 3 Prater Diversions Rides',
+      ]),
+    [],
+  );
 
   useEffect(() => {
     setTimeout(() => setPrize(places[selectedItem]), 4000);
